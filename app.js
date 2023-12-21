@@ -59,3 +59,10 @@ app.put('/players/:playerId/', async (request, response) => {
   await db.run(query)
   response.send('Player Details Updated')
 })
+app.delete('/players/:playerId/', async (request, response) => {
+  const {playerId} = request.params
+  const query = `DELETE FROM cricket_team WHERE player_id = ${playerId};`
+  await db.run(query)
+  response.send('Player Removed')
+})
+module.exports = app
